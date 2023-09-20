@@ -1,0 +1,16 @@
+
+.main{
+    display: flex;
+}
+.img{
+    width: 75%;
+    height: 100vh;
+    overflow: hidden;
+    
+}
+.invalid{
+    color: red;
+}
+.valid{
+    color: green;
+}
