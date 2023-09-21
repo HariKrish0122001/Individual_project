@@ -26,6 +26,7 @@ const sequelize= new Sequelize(
 const db={}
 db.sequelize=sequelize
 db.USER=require('../entity/users/user_table')(sequelize,DataTypes)
+db.BLOG=require('../entity/blogs/blogs')(sequelize,DataTypes)
 
 
 

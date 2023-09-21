@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 import { BrowserRouter as Router } from 'react-router-dom';
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

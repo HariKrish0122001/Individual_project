@@ -7,7 +7,9 @@
       margin-right: 0;
     }
   }
-.col-6 img{
-    width: 80%;
+img{
+
+    width: 100%px;
     height: 100vh;
+    overflow: hidden;
 }
