@@ -6,17 +6,29 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './addblog.css'
+import userapiservice from '../../services/users/userapiservice';
+import { toast } from 'react-toastify';
+
 
 function AddBlog({ open, onClose })
 {
   const [title,setTitle]=useState()
   const [blog,setBlog]=useState()
-  const HandleSubmit=(e)=>{
+  const user_id=1//static
+  const HandleSubmit= async (e)=>{
     e.preventDefault()
     try {
+      const response= await userapiservice.addblog({user_id,title,blog})
+      if(response.data==="Blog saved successfully"){
+        toast.success("Blog posted")
+      }
+      else{
+        toast.error("Failed to post, Retry")
+      }
       
     } catch (error) {
-      
+      console.log("Error at catch",error)
+      throw(error)
     }
   }
   return (

@@ -13,9 +13,28 @@ const create_blog = async(req, res) =>{
             res.send("Blog saved successfully")
         }
     } catch (error) {
-        
+       res.send("Failed to save the blog") 
+    }
+}
+const fetch=async(req,res)=>{
+    const user_id = req.params.id
+    console.log(user_id)
+    try {
+        const fetchdata=await blog.findAll({
+            where:{
+                user_id:user_id
+            }
+        })
+        console.log("hey jolly")
+        if(fetchdata)
+        {
+            res.send(fetchdata)
+        }
+    } catch (error) {
+        res.send("Failed to fetch")
     }
 }
 module.exports={
-    create_blog
+    create_blog,
+    fetch,
 }

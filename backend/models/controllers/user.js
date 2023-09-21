@@ -1,9 +1,9 @@
 const env = require('dotenv')
 env.config('/.env')
-const db = require('../entity')
+const db = require('../entity/index.js')
 const jwt = require('jsonwebtoken');
 const bcrypt=require("bcrypt")
-const user = db.USER
+const User = db.USER
 
 
 
@@ -11,29 +11,25 @@ const user = db.USER
 const create_user = async (req, res) => {
 
     const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
-
-    const isValid = /@jmangroup\.com$/
-
     try {
-        if (req.body.name && req.body.email && req.body.password) {
-            console.log(req.body, "ASJDNKJASDL")
-            var { name, email, password } = req.body
+       
+        if (req.body.username && req.body.mail && req.body.pass) {
+            
+            var password=req.body.pass
             if (!passwordRegex.test(password)) {
                 res.send("Passoword is weak")
             }
-            else if (!isValid.test(email)) {
-                res.send("not an organisation mail")
-            }
-
             else {
+                console.log(req.body)
                 const hash = await bcrypt.hash(password, 10);
                 password = hash
-
-                await user.create({
-                    name: req.body.name,
-                    mail: req.body.email,
+                console.log("Success")
+                const response=await User.create({
+                    name: req.body.username,
+                    mail: req.body.mail,
                     password: password
                 });
+                console.log("Success")
                 res.send({ statusCode: 200, message: 'response success' })
             }
         }
@@ -52,24 +48,21 @@ const login = async (req, res) => {
     const password=req.body.pass
 
     const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
-    const isValid = /@jmangroup\.com$/.test(email);
+  
     
-    if (!isValid) {
-        res.send("invaild mail")
-    }
-    else if (!passwordRegex.test(password)) {
+   
+    if (!passwordRegex.test(password)) {
         res.send("Passoword is weak")
     }
     else {
         try {
             
-            const valid_user = await user.findOne({
+            const valid_user = await User.findOne({
                 where: {
                     mail: email,
-
                 }
             })
-            
+            console.log("DSFJKSDF")
             const valid = await bcrypt.compare(password, valid_user.password)
             // console.log("after validation ",process.env.SECRET_KEY)
             if (!valid_user.isadmin && valid) {

@@ -7,8 +7,11 @@ var Blog=require("../models/controllers/blog")
 //   res.send('respond with a resource');
 // });
 
-router.post("/signin",User.create_user);// for creating the user
+router.post("/signup",User.create_user);// for creating the user
 router.post("/login",User.login)
 router.post('/addblog',Blog.create_blog)
 
+
+///blogs
+router.get('/fetch/:id',Blog.fetch)
 module.exports = router;

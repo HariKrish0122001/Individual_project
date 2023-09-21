@@ -11,34 +11,31 @@ import {
   from 'mdb-react-ui-kit';
 import { ToastContainer, toast } from 'react-toastify';
 import userapiservice from '../../services/users/userapiservice';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [mail, setMail] = useState()
   const [pass, setPass] = useState()
   const formRef = useRef()
-
+  const navigate=useNavigate()
 
   const HandleSubmit = async(e) => {
     e.preventDefault()
     const regex = /^[a-zA-Z0-9._%+-]+@jmangroup\.com$/;
     const isValid =regex.test(mail);
 
-    if (!isValid) {
-      toast.error("Enter the organisation mail")
-      formRef.current.reset()
-    }
-    // else if (mail.trim() === '' || pass.trim() === '') 
-    //   toast.error('Please fill in all fields.');
-    // }
-    else {
       try {
-        console.log("BEFORE API",mail,pass)
+      
         const response= await userapiservice.login({mail,pass})
       
           if(response.data.message==='User logged')
-          {
+          { 
+            localStorage.setItem('user_id',response.data.data.id)
             localStorage.setItem("token",response.data.token)
             toast.success("Login Success")
+            setTimeout(()=>{
+              navigate('/dashboard')
+            },1500)
           }
           else{
             toast.error("Invalid Credentials")
@@ -47,7 +44,7 @@ function Login() {
        catch (error) {
         toast.error("Account not found")
       }
-    }
+    
   }
 
   return (
