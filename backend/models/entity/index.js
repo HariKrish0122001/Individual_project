@@ -4,7 +4,7 @@ dotenv.config()
 const { Sequelize, DataTypes } = require("sequelize");
 console.log('connection successful !!!')
 const sql = require("mysql2/promise")
-console.log(process.env.USER)
+
 
 sql.
     createConnection({ user: process.env.USER, password: process.env.PASSWORD })

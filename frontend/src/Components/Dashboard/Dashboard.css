@@ -1,0 +1,9 @@
+.card-header{
+    background-color: #dbd35bec !important;
+    color: black !important;
+}
+.card{
+    width: 50%!important;
+    justify-content: center!important;
+    margin-left: 20%;
+}

@@ -14,4 +14,7 @@ router.post('/addblog',Blog.create_blog)
 
 ///blogs
 router.get('/fetch/:id',Blog.fetch)
+router.get('/getblog/:id',Blog.editfetch)
+router.post('/editsave',Blog.editsave)
+
 module.exports = router;

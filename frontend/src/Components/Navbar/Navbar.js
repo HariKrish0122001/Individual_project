@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import AddBlog from '../Addblog/addblog';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const pages = ['Dashboard', 'Add'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -21,6 +22,7 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const navigate=useNavigate()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -41,9 +43,7 @@ function Navbar() {
     setIsModalOpen(true);
   };
   
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  
   
   return (
     <AppBar position="static">
@@ -126,7 +126,9 @@ function Navbar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
            
               <Button
-              onClick={handleOpenModal}
+              onClick={()=>{
+                navigate('/addblog')
+              }}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Add
@@ -134,37 +136,9 @@ function Navbar() {
             
             
           </Box>
-          <AddBlog open={isModalOpen} onClose={handleCloseModal} />
+         
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+         
         </Toolbar>
       </Container>
     </AppBar>
