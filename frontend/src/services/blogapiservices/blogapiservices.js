@@ -29,6 +29,7 @@ const blogapiservices={
     },
     save_edit:async(data)=>{
         try{
+            console.log("sari da ",data)
             const response=await Localhost.post('users/editsave',data)
             return response
         }
@@ -36,6 +37,27 @@ const blogapiservices={
         {
             console.error(e)
             throw(e)
+        }
+    },
+    delete_blog:async(data)=>
+    {
+        try {
+            console.log(data)
+            const response=await Localhost.put('users/delete_blog',{id:data})
+            console.log(response)
+            return response
+        } catch (error) {
+            console.error(error)
+            return error
+        }
+    },
+    view_all:async()=>{
+        try {
+            const response=await Localhost.get('users/all_users')
+            
+            return response
+        } catch (error) {
+            return error
         }
     }
 

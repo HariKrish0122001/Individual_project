@@ -33,7 +33,11 @@ function AddBlog(props)
     }
   }
   useEffect(()=>{
-
+    const token=localStorage.getItem("token")
+    if(!token)
+    {
+      navigate('/')
+    }
   },[])
   return (
     <>

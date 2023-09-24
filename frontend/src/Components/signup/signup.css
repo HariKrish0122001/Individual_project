@@ -1,9 +1,9 @@
 
 .main{
     display: flex;
-}
-.img{
-    width: 75%;
+} 
+.col img{
+    width: 115vb;
     height: 100vh;
     overflow: hidden;
 }
@@ -12,4 +12,4 @@
 }
 .valid{
     color: green;
-}
+} 

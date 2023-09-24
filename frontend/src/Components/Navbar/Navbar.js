@@ -54,7 +54,7 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/dashboard"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -97,11 +97,53 @@ function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              <MenuItem key={"My Blogs"} onClick={handleCloseNavMenu}>
+                
+                <Button
+            onClick={()=>{
+              navigate('/dashboard')
+            }}
+            sx={{ my: 2, display: 'block' }}
+          >
+           My Blogs
+          </Button>
+              </MenuItem>
+                 <MenuItem key={"Add"} onClick={handleCloseNavMenu}>
+                  {/* <Typography textAlign="center">Add blog</Typography> */}
+                  <Button
+              onClick={()=>{
+                navigate('/addblog')
+              }}
+              sx={{ my: 2, display: 'block' }}
+            >
+              Add Blog
+            </Button>
                 </MenuItem>
-              ))}
+                <MenuItem key={"View"} onClick={handleCloseNavMenu}>
+                  {/* <Typography textAlign="center">View all blogs</Typography> */}
+                  <Button
+              onClick={()=>{
+                navigate('/general')
+              }}
+              sx={{ my: 2, display: 'block' }}
+            >
+             View all blogs
+            </Button>
+                </MenuItem>
+                <MenuItem key={"Logout"} onClick={handleCloseNavMenu}>
+                 
+                  <Button
+              onClick={()=>{
+                localStorage.removeItem('token')
+                navigate('/')
+              }}
+              sx={{ my: 2, display: 'block' }}
+            >
+             Log Out
+            </Button>
+                </MenuItem>
+                
+              
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -109,7 +151,7 @@ function Navbar() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/dashboard"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -124,6 +166,14 @@ function Navbar() {
            JBLOG
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Button
+              onClick={()=>{
+                navigate('/dashboard')
+              }}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              My Blogs
+            </Button>
            
               <Button
               onClick={()=>{
@@ -134,7 +184,25 @@ function Navbar() {
               Add
             </Button>
             
+            <Button
+              onClick={()=>{
+                navigate('/general')
+              }}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              View all blogs
+            </Button>
+            <Button
+              onClick={()=>{
+                localStorage.removeItem('token')
+                navigate('/')
+              }}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Logout
+            </Button>
             
+          
           </Box>
          
 

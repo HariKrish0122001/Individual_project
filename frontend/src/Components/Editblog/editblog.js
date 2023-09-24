@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './editblog.css'
 import userapiservice from '../../services/users/userapiservice';
-import { toast } from 'react-toastify';
+import { toast,ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import blogapiservices from '../../services/blogapiservices/blogapiservices';
 
@@ -27,14 +27,25 @@ function EditBlog()
     e.preventDefault()
     const editsave=await blogapiservices.save_edit({title,blog,blog_id})
     .then((response)=>{
+      console.log(response)
       if(response.data==='Edited successfully')
       {
         toast.success("Edited successfully")
-        navigate('/dashboard')
+        setTimeout(() => {
+          navigate('/dashboard')  
+        }, 1200);
+        
       }
       else if(response.data==='Empty')
       {
         toast.error("Cannot save the empty")
+      }
+      else if(response.data==="No changes were made")
+      {
+        toast.info("No changes made")
+        setTimeout(() => {
+          navigate('/dashboard')
+        }, 1200);
       }
       else{
         toast.error("Failed to save")
@@ -52,6 +63,11 @@ function EditBlog()
     }
   }
   useEffect(()=>{
+    const token=localStorage.getItem("token")
+    if(!token)
+    {
+      navigate('/')
+    }
     fetchdata()
   },[])
   return (
@@ -59,6 +75,7 @@ function EditBlog()
     <div className='blog_bg'>
       <div className='blog-main'>
         <h2> Edit Blog</h2>
+        <ToastContainer/>
       <Form onSubmit={HandleSubmit} className='blog_container'>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Title</Form.Label>

@@ -9,36 +9,66 @@ import EditButton from "../Button/button";
 import { useNavigate } from "react-router-dom";
 function Dashboard() {
   const [userdata, setUserdata] = useState([])
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const [fetchData, setFetchData] = useState(true);
+
   const fetchuserdata = async () => {
-    
     try {
       const user_id = localStorage.getItem('user_id');
       const response = await blogapiservices.fetchuserdata(user_id);
       console.log(response.data)
       setUserdata(response.data);
+      setFetchData(true)
     } catch (error) {
       console.error("Error fetching user data:", error);
-      // Handle the error (e.g., show an error toast)
+      
+    }
+  }
+  const deleteblog = async (id) => {
+  
+    const confirm = window.confirm("Are you sure do you want to delete this blog?")
+    if (confirm) {
+      try {
+        const del_blog = await blogapiservices.delete_blog(id)
+          .then((response) => {
+            if (response.data === 'blog deleted successfully') {
+              toast.success("Blog deleted successfully")
+              setFetchData(false)
+            }
+            else if (response.data === 'Failed to delete') {
+              toast.error("Failed to delete")
+            }
+            else {
+              toast.error("Failed to delete ,Try again")
+            }
+          })
+      }
+      catch (e) {
+        toast.error("No blogs found in server")
+      }
     }
   }
   useEffect(() => {
-     if (fetchData) {
-    fetchuserdata();
-}
-   
-  }, [])
+    const token=localStorage.getItem("token")
+    if(!token)
+    {
+      navigate('/')
+    }
+      fetchuserdata();
+    
 
+  }, [fetchData])
+
+  
   return (
     <div>
       <ToastContainer />
       <div>
-        <Navbar/>
+        <Navbar />
       </div>
       <div>
-        
-       
+
+
         {userdata.map((userData, index) => (
           <Card key={index}>
             <Card.Header>{userData.title}</Card.Header>
@@ -48,13 +78,18 @@ function Dashboard() {
                   {userData.blog}
                 </p>
                 <footer className="blockquote-footer">
-                  by<cite title="Source Title">{userData.name}</cite>
+                  <></>
+                  {/* by<cite title="Source Title">{userData.name}</cite> */}
                 </footer>
-                <button onClick={()=>{
-                  localStorage.setItem("blog_id",userData.id)
+                <button className='btn btn-info float-right' onClick={() => {
+                  localStorage.setItem("blog_id", userData.id)
                   navigate('/editblog')
-                }}/>
-                
+                }} >EDIT</button>
+                &nbsp;&nbsp;&nbsp;
+                <button className='btn btn-danger float-right' onClick={() => {
+                  deleteblog(userData.id)
+                }}>DELETE</button>
+
               </blockquote>
             </Card.Body>
           </Card>))}

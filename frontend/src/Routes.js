@@ -6,6 +6,7 @@ import Dashboard from './Components/Dashboard/dashboard';
 import AddBlog from './Components/Addblog/addblog';
 import EditButton from './Components/Button/button';
 import EditBlog from './Components/Editblog/editblog';
+import Users_Dashboard from './Components/general blogs/general';
 
 function Routing() {
     return (
@@ -16,7 +17,7 @@ function Routing() {
                 <Route path='/dashboard' element={<Dashboard/>}/>
                 <Route path='/addblog' element={<AddBlog/>}/>
                 <Route path='/editblog' element={<EditBlog/>}/>
-                <Route path='/button' element={<EditButton/>}/>
+                <Route path='/general' element={<Users_Dashboard/>}/>
             </Routes>
         </>
     );

@@ -1,6 +1,8 @@
 const { response } = require('../../app')
+const { Op } = require("sequelize")
 const db = require('../entity')
 const blog = db.BLOG
+const User = db.USER
 
 const create_blog = async (req, res) => {
     console.log(req.body)
@@ -23,7 +25,8 @@ const fetch = async (req, res) => {
     try {
         const fetchdata = await blog.findAll({
             where: {
-                user_id: user_id
+                user_id: user_id,
+                isdelete: false
             }
         })
 
@@ -60,8 +63,8 @@ const editfetch = async (req, res) => {
 }
 
 const editsave = async (req, res) => {
-    
-    const blog_id = req.body.id
+
+    const blog_id = req.body.blog_id
     const title = req.body.title
     const blog_data = req.body.blog
     if (blog_id && title && blog_data) {
@@ -86,13 +89,64 @@ const editsave = async (req, res) => {
         catch (e) {
             res.send("Empty")
         }
-    }else{
-        res.send("if condition failed")
+    } else {
+        res.send("No changes were made")
     }
 }
+const delete_blog = async (req, res) => {
+    console.log(req.body)
+    const blog_id = req.body.id
+    if (blog) {
+        try {
+            console.log(blog_id)
+            const del = await blog.update({
+                isdelete: true
+            }, {
+                where: {
+                    id: blog_id
+                }
+            }).then((data) => {
+                if (data) {
+                    res.send("blog deleted successfully")
+                }
+                else {
+                    res.send("Failed to delete")
+                }
+            })
+
+        } catch (error) {
+            res.send("failed to perform delete operation in db ")
+
+        }
+    }
+
+}
+const all_users = async (req, res) => {
+    try {
+        const user = await blog.findAll({
+            include: User,
+            
+        }).then((response)=>{
+            if(response){
+                res.send(response)
+            }
+            else{
+                res.send("Failed")
+            }
+        
+    
+        })
+    }
+       
+    catch (e) {
+        res.send(e)
+    }}
+
 module.exports = {
     create_blog,
     fetch,
     editfetch,
-    editsave
+    editsave,
+    delete_blog,
+    all_users
 }
