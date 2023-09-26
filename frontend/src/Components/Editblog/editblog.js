@@ -10,8 +10,7 @@ import blogapiservices from '../../services/blogapiservices/blogapiservices';
 
 function EditBlog()
 {
-  
-  // const { user_id = 'secondary', label = 'Button Text', ...restProps } = props;
+
   
   const user_id=localStorage.getItem('user_id')
   const blog_id=localStorage.getItem('blog_id')
@@ -85,7 +84,7 @@ function EditBlog()
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Description</Form.Label>
-        <Form.Control as="textarea" rows={3} placeholder="Write your thoughts...."  defaultValue ={blogdata} onChange={(e)=>{
+        <Form.Control as="textarea" rows={5} placeholder="Write your thoughts...."  defaultValue ={blogdata} onChange={(e)=>{
           setBlog(e.target.value)
         }} />
       </Form.Group>

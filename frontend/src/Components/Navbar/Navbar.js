@@ -14,12 +14,15 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import AddBlog from '../Addblog/addblog';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import userapiservice from '../../services/users/userapiservice';
+import { useState } from 'react';
 
-const pages = ['Dashboard', 'Add'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [user,setUser]=useState()
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const navigate=useNavigate()
@@ -42,8 +45,18 @@ function Navbar() {
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+  const userdata=async()=>{
+    const user_id=localStorage.getItem('user_id')
+    const user=await userapiservice.getusername(user_id)
+    if(user){
+      setUser(user)
+    }
   
-  
+    
+  }
+  useEffect(()=>{
+    userdata()
+  },[])
   
   return (
     <AppBar position="static">
@@ -135,6 +148,8 @@ function Navbar() {
                   <Button
               onClick={()=>{
                 localStorage.removeItem('token')
+                localStorage.removeItem('user_id')
+                localStorage.removeItem('blog_id')
                 navigate('/')
               }}
               sx={{ my: 2, display: 'block' }}
@@ -204,6 +219,9 @@ function Navbar() {
             
           
           </Box>
+          {/* {console.log(user.data)} */}
+          
+          {user ? (user.data.name):("asdasd")}
          
 
          

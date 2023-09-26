@@ -3,7 +3,19 @@
     color: white !important;
 }
 .card{
-    width: 70%!important;
+    width: 30%!important;
     justify-content: center!important;
-    margin-left: 10%;
+    margin-left: 20%;
+}
+.card-container {
+    margin-bottom: 02%; /* Adjust the value to control the space between cards */
+    width: 10%;
+}
+.myblog{
+  
+    display: flex;
+    margin-bottom: 2%;
+    background-color: #1976d2;
+    color: antiquewhite;
+    justify-content: center;
 }

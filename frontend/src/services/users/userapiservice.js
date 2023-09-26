@@ -1,3 +1,4 @@
+
 import Localhost
  from "../../https/http";
  
@@ -35,6 +36,19 @@ const userapiservice={
         catch(e)
         {
             console.error("Error at catch",e)
+        }
+    },
+    getusername:async(data)=>{
+        try{
+            console.log(data)
+            const response=await Localhost.get(`users/username/${data}`)
+            console.log(response)
+            return response
+        }
+        catch(e)
+        {
+            console.log(e)
+            return e 
         }
     }
 }

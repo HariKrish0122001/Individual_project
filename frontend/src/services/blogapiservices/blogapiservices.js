@@ -5,7 +5,7 @@ const blogapiservices={
         const user_id=localStorage.getItem('user_id')
         console.log("HELLO")
         try{
-        const response= await Localhost.get(`users/fetch/${user_id}`)
+        const response= await Localhost.get(`blog/fetch/${user_id}`)
         
         return response
     }
@@ -18,7 +18,7 @@ const blogapiservices={
     fetchusereditdata:async(data)=>{
         try{
             console.log("user",data)
-            const response=await Localhost.get(`users/getblog/${data}`)
+            const response=await Localhost.get(`blog/getblog/${data}`)
             return response
         }
         catch(e)
@@ -30,7 +30,7 @@ const blogapiservices={
     save_edit:async(data)=>{
         try{
             console.log("sari da ",data)
-            const response=await Localhost.post('users/editsave',data)
+            const response=await Localhost.post('blog/editsave',data)
             return response
         }
         catch(e)
@@ -43,7 +43,7 @@ const blogapiservices={
     {
         try {
             console.log(data)
-            const response=await Localhost.put('users/delete_blog',{id:data})
+            const response=await Localhost.put('blog/delete_blog',{id:data})
             console.log(response)
             return response
         } catch (error) {
@@ -53,7 +53,7 @@ const blogapiservices={
     },
     view_all:async()=>{
         try {
-            const response=await Localhost.get('users/all_users')
+            const response=await Localhost.get('blog/all_users')
             
             return response
         } catch (error) {

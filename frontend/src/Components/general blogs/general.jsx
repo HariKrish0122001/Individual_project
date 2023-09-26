@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import blogapiservices from "../../services/blogapiservices/blogapiservices";
 import { useEffect, useState } from "react";
-import './Dashboard.css'
+import './generalDashboard.css'
 import EditButton from "../Button/button";
 import { useNavigate } from "react-router-dom";
 function Users_Dashboard() {
@@ -67,10 +67,11 @@ function Users_Dashboard() {
         <Navbar />
       </div>
       <div>
+        <br/>
 
 
         {userdata.map((userData, index) => (
-          <Card key={index}>
+          <Card key={index}  className="card-container">
             <Card.Header>{userData.title}</Card.Header>
             <Card.Body>
               <blockquote className="blockquote mb-0">

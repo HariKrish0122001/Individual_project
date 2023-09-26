@@ -1,0 +1,13 @@
+.card-header{
+    background-color: #1976d2 !important;
+    color: white !important;
+}
+.card{
+    width: 96%!important;
+    /* justify-content: center!important; */
+    margin-left: 01%;
+}
+.card-container {
+    margin-bottom: 03%; /* Adjust the value to control the space between cards */
+  }
+  

@@ -66,11 +66,12 @@ function Dashboard() {
       <div>
         <Navbar />
       </div>
-      <div>
-
-
+      <div >
+        <div  className="myblog">
+      <h2 >My Blogs</h2>
+      </div>
         {userdata.map((userData, index) => (
-          <Card key={index}>
+          <Card key={index} className="card-container">
             <Card.Header>{userData.title}</Card.Header>
             <Card.Body>
               <blockquote className="blockquote mb-0">
@@ -79,7 +80,7 @@ function Dashboard() {
                 </p>
                 <footer className="blockquote-footer">
                   <></>
-                  {/* by<cite title="Source Title">{userData.name}</cite> */}
+                  
                 </footer>
                 <button className='btn btn-info float-right' onClick={() => {
                   localStorage.setItem("blog_id", userData.id)
@@ -92,8 +93,9 @@ function Dashboard() {
 
               </blockquote>
             </Card.Body>
-          </Card>))}
-
+          </Card>
+          
+          ))}
       </div>
     </div>
   )
