@@ -59,7 +59,7 @@ function Navbar() {
   },[])
   
   return (
-    <AppBar position="static" style={{backgroundColor:"#e1eedd",color:'black'}}>
+    <AppBar position="static" style={{backgroundColor:"#A0AECD",color:'#000000'}}>
       <Container maxWidth="xl" style={{color:'black'}}>
         <Toolbar disableGutters>
           <Typography
