@@ -1,12 +1,12 @@
-
 .main{
     display: flex;
 } 
-.col img{
+.signin{
     width: 115vb;
     height: 100vh;
     overflow: hidden;
 }
+
 .invalid{
     color: red;
 }

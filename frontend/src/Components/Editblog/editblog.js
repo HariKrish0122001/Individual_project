@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './editblog.css'
-import userapiservice from '../../services/users/userapiservice';
+import Navbar from '../Navbar/Navbar';
 import { toast,ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import blogapiservices from '../../services/blogapiservices/blogapiservices';
@@ -71,6 +71,7 @@ function EditBlog()
   },[])
   return (
     <>
+    <Navbar />
     <div className='blog_bg'>
       <div className='blog-main'>
         <h2> Edit Blog</h2>
@@ -89,8 +90,14 @@ function EditBlog()
         }} />
       </Form.Group>
       
-      <Button variant="primary" type="submit">
+      <Button variant="success" type="submit">
         Post
+      </Button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <Button variant="danger" onClick={()=>{
+        navigate('/dashboard')
+      }}>
+       Cancel
       </Button>
     </Form>
     </div>

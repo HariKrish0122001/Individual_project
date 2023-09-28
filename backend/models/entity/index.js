@@ -28,8 +28,8 @@ db.sequelize=sequelize
 db.USER=require('../entity/users/user_table')(sequelize,DataTypes)
 db.BLOG=require('../entity/blogs/blogs')(sequelize,DataTypes)
 
-db.USER.hasMany(db.BLOG,{ foreignKey: 'user_id' })
 
+db.USER.hasMany(db.BLOG,{ foreignKey: 'user_id' })
 db.BLOG.belongsTo(db.USER, { foreignKey: 'user_id' });
 
 db.sequelize.sync({ force: false }, () => {

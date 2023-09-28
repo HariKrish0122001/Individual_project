@@ -82,7 +82,33 @@ const login = async (req, res) => {
         }
     }
 }
+const username=async(req,res)=>{
+    if(req.params.user_id){
+        try{
+            const user=await User.findOne({
+                where:{
+                    id:req.params.user_id
+                }
+            }).then((data)=>{
+                if(data){
+                    res.send(data)
+                }
+                else{
+                    res.statusCode(404).send("No data exist")
+                }
+            })
+        
+        }
+        catch(e){
+            res.send(e)
+        }
+    }
+    else{
+        res.send("No request params")
+    }
+}
 module.exports = {
     create_user,
-    login
+    login,
+    username
 }

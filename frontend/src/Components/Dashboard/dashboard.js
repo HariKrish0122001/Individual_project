@@ -1,6 +1,8 @@
 import Navbar from "../Navbar/Navbar";
 import { ToastContainer, toast } from 'react-toastify';
 import Button from 'react-bootstrap/Button';
+import { FaTimes } from 'react-icons/fa';
+import {FaEdit } from 'react-icons/fa';
 import Card from 'react-bootstrap/Card';
 import blogapiservices from "../../services/blogapiservices/blogapiservices";
 import { useEffect, useState } from "react";
@@ -66,30 +68,26 @@ function Dashboard() {
       <div>
         <Navbar />
       </div>
-      <div >
-        <div  className="myblog">
-      <h2 >My Blogs</h2>
-      </div>
+      <div className="blog_main">
+        
         {userdata.map((userData, index) => (
           <Card key={index} className="card-container">
-            <Card.Header>{userData.title}</Card.Header>
+            <Card.Header><h4>{userData.title}</h4></Card.Header>
             <Card.Body>
-              <blockquote className="blockquote mb-0">
+              <blockquote className="mb-4">
                 <p>
                   {userData.blog}
                 </p>
-                <footer className="blockquote-footer">
-                  <></>
-                  
-                </footer>
-                <button className='btn btn-info float-right' onClick={() => {
+                
+                <button className='btn' onClick={() => {
                   localStorage.setItem("blog_id", userData.id)
                   navigate('/editblog')
-                }} >EDIT</button>
+                }} ><FaEdit/></button>
                 &nbsp;&nbsp;&nbsp;
-                <button className='btn btn-danger float-right' onClick={() => {
+                <button className='btn btn-danger' onClick={() => {
                   deleteblog(userData.id)
-                }}>DELETE</button>
+                }}>
+                   <FaTimes/></button>
 
               </blockquote>
             </Card.Body>

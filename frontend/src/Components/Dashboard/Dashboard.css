@@ -1,6 +1,6 @@
 .card-header{
-    background-color: #1976d2 !important;
-    color: white !important;
+    background-color: #e1eedd!important;
+    color: black !important;
 }
 .card{
     width: 30%!important;
@@ -18,4 +18,11 @@
     background-color: #1976d2;
     color: antiquewhite;
     justify-content: center;
+}
+.blog_main{
+    margin-top: 5%;
+}
+h4{
+    font-weight: 100;
+    font-family: 'Times New Roman', Times, serif;
 }

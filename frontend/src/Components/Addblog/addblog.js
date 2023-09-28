@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './addblog.css'
 import userapiservice from '../../services/users/userapiservice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 
-function AddBlog(props)
+function AddBlog()
 {
-  console.log(props)
-  // const { user_id = 'secondary', label = 'Button Text', ...restProps } = props;
+ 
   const [title,setTitle]=useState()
   const [blog,setBlog]=useState()
   const user_id=localStorage.getItem('user_id')
@@ -41,6 +40,7 @@ function AddBlog(props)
   },[])
   return (
     <>
+    <Navbar />
     <div className='blog_bg'>
       <div className='blog-main'>
         <h2> New Blog</h2>
@@ -61,10 +61,16 @@ function AddBlog(props)
       <Button variant="primary" type="submit">
         Post
       </Button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <Button variant="secondary" onClick={()=>{
+        navigate('/dashboard')
+      }}>
+       Cancel
+      </Button>
     </Form>
     </div>
     </div>
-      </>
+    </>
     
   );
 }

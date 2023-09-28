@@ -59,14 +59,13 @@ function Navbar() {
   },[])
   
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="static" style={{backgroundColor:"#e1eedd",color:'black'}}>
+      <Container maxWidth="xl" style={{color:'black'}}>
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
-            component="a"
+            component="ab"
             href="/dashboard"
             sx={{
               mr: 2,
@@ -74,7 +73,7 @@ function Navbar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'white',
+              color:'black',
               textDecoration: 'none',
             }}
           >
@@ -174,7 +173,7 @@ function Navbar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color:'black',
               textDecoration: 'none',
             }}
           >
@@ -185,7 +184,7 @@ function Navbar() {
               onClick={()=>{
                 navigate('/dashboard')
               }}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{ my: 2, color:'black', display: 'block' }}
             >
               My Blogs
             </Button>
@@ -194,7 +193,7 @@ function Navbar() {
               onClick={()=>{
                 navigate('/addblog')
               }}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{ my: 2, color:'black', display: 'block' }}
             >
               Add
             </Button>
@@ -203,7 +202,7 @@ function Navbar() {
               onClick={()=>{
                 navigate('/general')
               }}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{ my: 2,color:'black', display: 'block' }}
             >
               View all blogs
             </Button>
@@ -212,7 +211,7 @@ function Navbar() {
                 localStorage.removeItem('token')
                 navigate('/')
               }}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{ my: 2, color:'black', display: 'block' }}
             >
               Logout
             </Button>

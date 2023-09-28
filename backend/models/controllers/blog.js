@@ -39,7 +39,6 @@ const fetch = async (req, res) => {
 }
 const editfetch = async (req, res) => {
     const blog_id = req.params.id
-    console.log("Asdnalsd")
     try {
         const data = await blog.findAll({
             where: {
@@ -89,7 +88,52 @@ const editsave = async (req, res) => {
         catch (e) {
             res.send("Empty")
         }
-    } else {
+    } 
+    else if(title){
+        try {
+            const response = await blog.update({
+                
+                title: title
+            }, {
+                where: {
+                    id: blog_id
+                }
+            }).then((response) => {
+                if (response) {
+                    res.send("Edited successfully")
+                }
+                else {
+                    res.send("Failed to save")
+                }
+            })
+        }
+        catch (e) {
+            res.send("Empty")
+        }
+
+    }
+    else if(blog_data){
+        try {
+            
+            const response = await blog.update({
+                blog: blog_data,
+            }, {
+                where: {
+                    id: blog_id
+                }
+            }).then((response) => {
+                if (response) {
+                    res.send("Edited successfully")
+                }
+                else {
+                    res.send("Failed to save")
+                }
+            })
+        }
+        catch (e) {
+            res.send("Empty")
+        }
+    }else {
         res.send("No changes were made")
     }
 }
